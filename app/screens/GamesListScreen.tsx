@@ -1,8 +1,9 @@
 import React from 'react'
-import { TextStyle, View, ViewStyle } from 'react-native'
+import { Image, TextStyle, View, ViewStyle } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { colors, sizes } from '../../shared/theme'
+import { games } from '../../shared/utils/sampleGames'
 import { Text } from '../components/Text'
 
 export const GamesListScreen = () => {
@@ -10,13 +11,27 @@ export const GamesListScreen = () => {
 
   return (
     <View style={[$screen, { paddingBottom, paddingTop }]}>
-      <View style={$welcomeContainer}>
-        <Text style={$welcomeSmall}>Welcome To:</Text>
-        <Text style={$welcomeLarge}>React Native{`\n`}Essentials!</Text>
+      <View style={$scard}>
+        <Image
+          style={$scardContent}
+          source={{ uri: games[0].cover.imageUrl }}
+        />
+        <Text>{games[0].name}</Text>
       </View>
-      <Text style={$screenInfo}>./app/screens/GamesListScreen.tsx</Text>
     </View>
   )
+}
+
+const $scard: ViewStyle = {
+  flexDirection: 'row',
+  flex: 1,
+  padding: sizes.spacing.md,
+  columnGap: sizes.spacing.md,
+}
+
+const $scardContent: ImageStyle = {
+  height: 90,
+  width: 90,
 }
 
 const $screen: ViewStyle = {
